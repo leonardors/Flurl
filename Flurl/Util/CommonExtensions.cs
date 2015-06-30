@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 
 namespace Flurl.Util
 {
@@ -22,7 +23,7 @@ namespace Flurl.Util
 					yield return new KeyValuePair<string, object>(kv.Key.ToInvariantString(), kv.Value);
 			}
 			else {
-				foreach (var prop in obj.GetType().GetProperties()) {
+                foreach (var prop in obj.GetType().GetRuntimeProperties()) {
 					var val = prop.GetValue(obj, null);
 					yield return new KeyValuePair<string, object>(prop.Name, val);
 				}
@@ -35,9 +36,9 @@ namespace Flurl.Util
 		public static string ToInvariantString(this object obj) {
 			// inspired by: http://stackoverflow.com/a/19570016/62600
 
-			var c = obj as IConvertible;
-			if (c != null) 
-				return c.ToString(CultureInfo.InvariantCulture);
+//			var c = obj as IConvertible;
+//			if (c != null) 
+//				return c.ToString(CultureInfo.InvariantCulture);
 
 			var f = obj as IFormattable;
 			if (f != null)
