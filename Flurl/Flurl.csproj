@@ -78,11 +78,6 @@
   <PropertyGroup>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release (
-  "$(SolutionDir)Build\nuget.exe" pack "$(SolutionDir)Build\Flurl.nuspec" -o "$(SolutionDir)Publish" -IncludeReferencedProjects
-)</PostBuildEvent>
-  </PropertyGroup>
   <Import Project="..\..\rdpreader_sharp\Solutions\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\rdpreader_sharp\Solutions\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
     <Error Condition="!Exists('..\..\rdpreader_sharp\Solutions\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
